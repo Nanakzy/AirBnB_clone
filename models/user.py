@@ -1,11 +1,13 @@
 #!/usr/bin/python3
+
 from models.base_model import BaseModel
-"""define user class"""
 
 
 class User(BaseModel):
+    """User class representing a user in the system."""
 
     def __init__(self, *args, **kwargs):
+        """Initializes a new User instance."""
         super().__init__(*args, **kwargs)
         self.email = kwargs.get('email', '')
         self.password = kwargs.get('password', '')

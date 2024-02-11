@@ -1,14 +1,11 @@
 #!/usr/bin/python3
-"""Defines the Place class."""
+""" defines a place class"""
 
 from models.base_model import BaseModel
 
 
 class Place(BaseModel):
-    """Represents a place."""
-
     def __init__(self, *args, **kwargs):
-        """Initialize Place instance."""
         super().__init__(*args, **kwargs)
         self.city_id = kwargs.get('city_id', '')
         self.user_id = kwargs.get('user_id', '')

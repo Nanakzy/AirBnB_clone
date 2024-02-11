@@ -1,13 +1,12 @@
 #!/usr/bin/python3
-"""Defines the Amenity class."""
 
 from models.base_model import BaseModel
+""" defines a user class """
 
 
-class Amenity(BaseModel):
-    """Represents an amenity."""
+class City(BaseModel):
 
     def __init__(self, *args, **kwargs):
-        """Initialize Amenity instance."""
         super().__init__(*args, **kwargs)
+        self.state_id = kwargs.get('state_id', '')
         self.name = kwargs.get('name', '')
