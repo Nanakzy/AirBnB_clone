@@ -121,16 +121,20 @@ class HBNBCommand(cmd.Cmd):
         Prints all string representations of instances based or not on the
         class name.
         """
-        objects = storage.all()
         if not arg:
-            print([str(obj) for obj in objects.values()])
+            print([str(obj) for obj in storage.all().values()])
             return
         try:
-            class_name = eval(arg).__name__
-            print([str(obj)
-                   for key, obj in objects.items() if class_name in key])
-        except NameError:
-            print("** class doesn't exist **")
+            class_name = arg.split()[0]
+            if class_name not in [
+                    "BaseModel", "User", "State",
+                    "City", "Amenity", "Place", "Review"
+                    ]:
+                print("** class doesn't exist **")
+                return
+            print([str(obj) for obj in globals()[class_name].all()])
+        except IndexError:
+            print("** class name missing **")
 
     def do_update(self, arg):
         """
