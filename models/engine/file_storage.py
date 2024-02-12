@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import json
+from models.user import User
 
 
 class FileStorage:
@@ -35,8 +36,11 @@ class FileStorage:
                 objects_dict = json.load(f)
                 for key, obj_dict in objects_dict.items():
                     class_name, obj_id = key.split('.')
-                    obj_cls = eval(class_name)
-                    obj = obj_cls(**obj_dict)
-                    FileStorage.__objects[key] = obj
+                    if class_name == 'User':
+                        obj_cls = User
+                    else:
+                        obj_cls = eval(class_name)
+                        obj = obj_cls(**obj_dict)
+                        FileStorage.__objects[key] = obj
         except FileNotFoundError:
             pass
