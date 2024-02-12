@@ -2,6 +2,11 @@
 
 import json
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class FileStorage:
@@ -31,6 +36,16 @@ class FileStorage:
     def reload(self):
         """Deserialize objects from JSON file."""
         from models.base_model import BaseModel
+        classes = {
+            'BaseModel': BaseModel,
+            'User': User,
+            'State': State,
+            'City': City,
+            'Amenity': Amenity,
+            'Place': Place,
+            'Review': Review
+        }
+
         try:
             with open(FileStorage.__file_path, 'r') as f:
                 objects_dict = json.load(f)
