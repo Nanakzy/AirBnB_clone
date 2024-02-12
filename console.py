@@ -173,6 +173,23 @@ class HBNBCommand(cmd.Cmd):
         except NameError:
             print("** class doesn't exist **")
 
+    def do_count(self, arg):
+        """
+        Retrieves the number of instances of a class.
+        """
+        try:
+            class_name = arg.split()[0]
+            if class_name not in [
+                    "BaseModel", "User", "State",
+                    "Amenity", "Place", "Review"
+                    ]:
+                print("** class doesn't exist **")
+                return
+            count = globals()[class_name].count()
+            print(count)
+        except IndexError:
+            print("** class name missing **")
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

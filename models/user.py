@@ -20,6 +20,13 @@ class User(BaseModel):
     first_name = ""
     last_name = ""
 
+    @classmethod
+    def count(cls):
+        """
+        Returns the number of instances of User.
+        """
+        return storage.count(cls)
+
     def __init__(self, *args, **kwargs):
         """Initialize User."""
         super().__init__(*args, **kwargs)
